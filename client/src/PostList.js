@@ -27,9 +27,11 @@ const PostList = () => {
         key={post.id}
       >
         <div >
+          <hr></hr>
           <h3>{post.title}</h3>
           <CommentList comments={post.comments} />
           <CommentCreate postId={post.id} />
+          <br></br>
         </div>
       </div>
     );
