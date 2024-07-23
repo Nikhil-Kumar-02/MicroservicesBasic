@@ -11,6 +11,7 @@ app.use(cors());
 const commentsByPostId = {};
 
 app.get("/posts/:id/comments", (req, res) => {
+  console.log("the comment to be sent " , commentsByPostId[req.params.id]);
   res.send(commentsByPostId[req.params.id] || []);
 });
 

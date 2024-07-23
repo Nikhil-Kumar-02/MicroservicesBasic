@@ -20,7 +20,7 @@ const PostList = () => {
     fetchPosts();
   }, []);
 
-  const renderedPosts = Object.values(posts).map((post) => {
+  const renderedPosts = Object.values(posts)?.map((post) => {
     return (
       <div
         style={{ width: "30%", marginBottom: "20px" }}

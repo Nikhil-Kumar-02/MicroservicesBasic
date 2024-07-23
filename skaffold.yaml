@@ -1,0 +1,63 @@
+apiVersion: skaffold/v2beta29
+kind: Config
+metadata:
+  name: my-app
+deploy:
+  kubectl:
+    manifests:
+      - ./infra/k8s/*.yaml
+build:
+  local :
+    push: false
+  artifacts:
+    - image: nickraj/client
+      context: client
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+        - src: 'src/**/*.js'
+          dest: .
+    - image: nickraj/comments
+      context: comments
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+        - src: '*.js'
+          dest : .
+    - image: nickraj/event-bus
+      context: event-bus
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+        - src: '*.js'
+          dest : .
+    - image: nickraj/moderation
+      context: moderation
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+        - src: '*.js'
+          dest : .
+    - image: nickraj/posts
+      context: posts
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+        - src: '*.js'
+          dest : .
+    - image: nickraj/query
+      context: query
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+        - src: '*.js'
+          dest : .
+
+
+
